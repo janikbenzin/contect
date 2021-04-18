@@ -1,0 +1,5 @@
+{
+    "VALID_USERNAME_PASSWORD_PAIRS": [
+        ["admin", "test123"]
+    ]
+}

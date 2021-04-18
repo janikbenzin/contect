@@ -1,0 +1,1 @@
+import contect.deviationdetection.detectors.autoencoder.objects.autoencoder

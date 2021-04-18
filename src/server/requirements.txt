@@ -1,0 +1,29 @@
+# Misc
+
+# Web-services
+
+dash==1.19.0
+dash-bootstrap-components==0.11.1
+dash-table==4.11.2
+dash-daq==0.5.0
+dash_auth==1.4.1
+celery==5.0.2
+plotly==4.14.1
+plotly-express==0.4.1
+dash-interactive-graphviz==0.2.1
+
+# Data / Process Science
+fsspec==0.8.5
+locket==0.2.0
+partd==1.1.0
+scikit-learn==0.24.0
+scikit-learn-extra==0.1.0b2
+dask==2.30.0
+pandas==1.2.0
+seaborn==0.11.0
+pygraphviz==1.6
+tensorflow-cpu==2.4.0
+
+# Database
+redis==3.5.3
+pm4py==2.1.1

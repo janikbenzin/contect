@@ -1,0 +1,10 @@
+.git
+.dockerignore
+/.idea
+/.idea/inspectionProfiles
+*.log
+/__pycache__
+/backend/__pycache__
+/contect/__pycache__
+*__pycache__
+*.DS_Store
