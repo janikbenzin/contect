@@ -3,7 +3,7 @@
 Contect is a framework for context-aware deviation detection in process executions that are extracted from object-centric event logs (see [OCEL Standard](http://ocel-standard.org) for a primer).
 The framework is implemented in the package *Contect*. 
 It offers its functionality through four main packages: *ParseData*, *Context*, *DeviationDetection* and *PostProcessing*.
-The theoretical foundations and derivations of the framework can be found in the corresponding master thesis **Context-aware detection of deviations in process executions** written by Janik-Vasily Benzin, supervised by Prof. Wil van der Aalst and advised by Gyunam Park at the Process and Data Science Chair at RWTH Aachen.
+The theoretical foundations and derivations of the framework can be found in the corresponding master thesis **Context-aware detection of deviations in process executions** written by Janik-Vasily Benzin, examined by Prof. Wil van der Aalst and supervised by Gyunam Park at the Process and Data Science Chair at RWTH Aachen.
 To showcase the framework, a number of contexts and deviation detection methods are implemented and 
 ready for use as a web service through the package *Backend*.
 There are two main deployment options available, which are explained in detail under *Deployment*.
