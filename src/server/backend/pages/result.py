@@ -204,6 +204,7 @@ def controls_sliders(detector_title):
                     )
                 ]
             ),
+            html.Div(id=f'{detector_title}-pos-slider-output-container'),
             html.Br(),
             dbc.Row(
                 dbc.Col(
@@ -214,6 +215,7 @@ def controls_sliders(detector_title):
                     width={'size': 10, 'offset': 1}
                 )
             ),
+            html.Div(id=f'{detector_title}-neg-slider-output-container'),
             html.Br()
         ],
         body=True
@@ -1271,6 +1273,20 @@ def show_detailed_graphs(daily_contexts, ps, ps_agg_daily_contexts):
             for sel in extract_extension(sit).selections
         ]
     )
+
+
+for detector in AvailableDetectorsExt:
+    @app.callback(
+        Output(f'{extract_title(detector)}-pos-slider-output-container', 'children'),
+        [Input(slider_id(extract_title(detector) + positive), 'value')])
+    def update_output(value):
+        return 'You have selected "{}" for the positive degree.'.format(value)
+
+    @app.callback(
+        Output(f'{extract_title(detector)}-neg-slider-output-container', 'children'),
+        [Input(slider_id(extract_title(detector) + negative), 'value')])
+    def update_output(value):
+        return 'You have selected "{}" for the negative degree'.format(value)
 
 
 for detector in AvailableDetectorsExt:

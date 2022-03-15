@@ -5,7 +5,7 @@ FROM base as builder
 
 RUN mkdir /install
 WORKDIR /install
-COPY requirements.txt /requirements.txtdocker
+COPY requirements.txt /requirements.txt
 
 # Upgrade installed packages
 RUN apt-get update && apt-get upgrade -y && apt-get clean

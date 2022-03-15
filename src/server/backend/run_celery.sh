@@ -9,4 +9,4 @@ export REDIS_LOCALHOST_OR_DOCKER=localhost
 export LOCALHOST_OR_DOCKER=localhost
 
 cd "${path}/src/server/backend/tasks" || exit
-/usr/local/bin/celery -A tasks worker --loglevel=INFO
+${path}/venv/bin/celery -A tasks worker --loglevel=INFO

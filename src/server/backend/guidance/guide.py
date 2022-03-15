@@ -42,7 +42,7 @@ def guide_negative(all_sit, antis, df_neg, situation_entity_selection):
         skewness = stats.skew(df_neg[sit])
         if not abs(skewness) < GUIDANCE_SKEW:
             # Not skewed enough to justify detection of deviations
-            if skewness < 0:
+            if skewness > 0:
                 anti = False
             else:
                 anti = True

@@ -915,7 +915,7 @@ def generate_agg_context_interpretations(contexts, detector, event_to_traces, lo
                                                                    values)
         ctx_val = contexts[detector][tu][0]
         return ctx_val, event_table, inspect_trace_buttons
-    except KeyError:
+    except (KeyError, ValueError) as e:
         return 'na', html.Br(), html.Br()
 
 
@@ -1059,5 +1059,5 @@ def generate_detailed_interpreter(anti, daily_contexts, detector, event_to_trace
                                                                    values)
         ctx_value = round(daily_contexts[detector][typ][simple_sit][selection][tu][SITUATION_AGG_KEY], 4)
         return ctx_value, entity_table, event_table, inspect_trace_buttons, interpreter
-    except KeyError:
-        return 'na', html.Br(), html.Br(), html.Br(), interpreter
+    except (KeyError, ValueError) as e:
+        return 'na', html.Br(), html.Br(), [html.Br()], interpreter

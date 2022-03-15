@@ -2,6 +2,16 @@ from typing import List
 
 from contect.available.available import AvailableDetectors
 from contect.parsedata.objects.oclog import ObjectCentricLog
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+
+def min_max_normalize(values: List) -> List:
+    scaler = MinMaxScaler()
+    values_array = np.array(values)
+    values_array = values_array.reshape(-1, 1)
+    values_normalized = [val[0] for val in scaler.fit_transform(values_array)]
+    return values_normalized
 
 
 def classify_trace(condition: bool, score: float, detector: AvailableDetectors, log: ObjectCentricLog, tid: int):

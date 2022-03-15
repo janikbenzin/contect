@@ -1,5 +1,6 @@
 import logging
 import dask.dataframe as ddf
+import math
 import itertools
 from pandas import to_datetime
 from datetime import datetime
@@ -55,24 +56,33 @@ def name_type(typ: str) -> str:
 
 def safe_split(row_obj):
     try:
-        if '{' in row_obj:
-            return row_obj[1:-1].split(',')
+        if isinstance(row_obj, str):
+            if '{' in row_obj:
+                return row_obj[1:-1].split(',')
+            else:
+                return row_obj.split(',')
         else:
-            return row_obj.split(',')
+            if isinstance(row_obj, float) and not math.isnan(row_obj):
+                return str(int(row_obj)).split(',')
+            elif isinstance(row_obj, int):
+                return str(row_obj).split(',')
+            else:
+                return []
     except TypeError:
         return []  # f'NA-{next(counter)}'
 
 
 def add_event(events: Dict[str, Event], index, row, cfg) -> None:
     events[str(index)] = Event(
-        id=str(index),
-        act=row[cfg.act_name],
-        time=to_datetime(row[cfg.time_name]),
-        omap=list(itertools.chain.from_iterable(
-            [safe_split(row[obj])
-             for obj in cfg.obj_names if row[obj] != '{}']
-        )),
-        vmap={attr: row[attr] for attr in cfg.val_names})
+            id=str(index),
+            act=row[cfg.act_name],
+            time=to_datetime(row[cfg.time_name]),
+            omap=list(itertools.chain.from_iterable(
+                [safe_split(row[obj])
+                 for obj in cfg.obj_names if row[obj] != '{}']
+            )),
+            vmap={attr: row[attr] for attr in cfg.val_names})
+
 
 
 def add_obj(objects: Dict[str, Obj], objs: List[str]) -> None:

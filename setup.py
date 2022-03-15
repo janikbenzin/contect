@@ -34,7 +34,7 @@ setuptools.setup(
         'seaborn==0.11.0',
         'scipy==1.6.1',
         'pygraphviz==1.6',
-        'tensorflow-cpu==2.4.0',
+        'tensorflow-cpu==2.5.0',
         'redis==3.5.3',
         'matplotlib==3.3.3',
         'ipython==7.19.0'
@@ -44,5 +44,5 @@ setuptools.setup(
         "License :: GPL :: 3.0",
         "Operating System :: OS Independent",
     ],
-    python_requires='==3.8.8',
+    #python_requires='==3.8.8',
 )

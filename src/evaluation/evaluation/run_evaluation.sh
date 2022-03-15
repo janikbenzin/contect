@@ -11,6 +11,6 @@ export PYTHONUNBUFFERED=1
 export SECRET_KEY=secret
 
 cd "${path}/src/evaluation/evaluation" || exit
-#python evaluate.py
-#python post_process.py
-/Users/meister/PycharmProjects/contect/venv/bin/python3.8 metrics.py
+python evaluate.py
+python post_process.py
+python metrics.py

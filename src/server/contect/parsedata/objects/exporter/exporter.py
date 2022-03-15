@@ -12,6 +12,7 @@ from pm4py.objects.conversion.log import converter as log_converter
 
 from contect.parsedata.objects.oclog import ObjectCentricLog, Trace, get_ps_alpha, get_ng_alpha
 from contect.util.event_colors import get_color_to_events_assignment
+from pm4py.statistics.traces.log import case_statistics
 
 TID_KEY = 'trace_id'
 EVENTS_KEY = 'events'
@@ -28,6 +29,7 @@ NEGATIVE_KEY = 'negative'
 RECOMMENDATION_KEY = 'recommendation'
 PS_ALPHA_KEY = 'psalpha'
 NG_ALPHA_KEY = 'ngalpha'
+PM4PY_PARAM = {case_statistics.Parameters.TIMESTAMP_KEY: TIMESTAMP_KEY.title()}
 
 
 def export_trace_to_dict(trace: Trace, variant=True, detector=None, vmap_params=None, objects=None, threshold=None,
@@ -130,7 +132,13 @@ def export_events(objects, events, result=False, detector=None, rows=None):
                      **{value.title() + ':Value': event.vmap[value] for value in event.vmap}}
                 for index, event in enumerate(events) if index < end_export
                 }
-        cols = list(events_dict[0].keys())
+        cols = set()
+        for i in range(end_export):
+            cols.update(set(events_dict[i].keys()))
+        cols = list(cols)
+        cols = ['EventId', 'Activity', 'Timestamp'] + \
+               [i for i in cols if ':Object' in i] + \
+               [i for i in cols if ':Value' in i]
         return events_dict, cols
     else:
         ps = AvailableSituationType.POSITIVE
@@ -143,7 +151,7 @@ def export_events(objects, events, result=False, detector=None, rows=None):
                         NEGATIVE_KEY.title(): event.complex_context[detector][ng],
                         },
                      **{f'{sit.value.title()}-{sel.value.title()}:{typ.value.title()}':
-                            f'*{event.rich_context[detector][typ][sit][sel][SITUATION_KEY]}'
+                            f'{event.rich_context[detector][typ][sit][sel][SITUATION_KEY]}'
                             if event.rich_context[detector][typ][sit][sel][ANTI_KEY] else
                             f'{event.rich_context[detector][typ][sit][sel][SITUATION_KEY]}'
                         for typ in event.rich_context[detector]
@@ -155,7 +163,13 @@ def export_events(objects, events, result=False, detector=None, rows=None):
                      **{value.title() + ':Value': event.vmap[value] for value in event.vmap}}
                 for index, event in enumerate(events)
                 }
-        cols = list(events_dict[0].keys())
+        cols = set()
+        for i in range(len(events)):
+            cols.update(set(events_dict[i].keys()))
+        cols = list(cols)
+        cols = ['EventId', 'Activity', 'Timestamp', 'Positive', 'Negative'] + \
+               [i for i in cols if ':Positive' in i] + [i for i in cols if ':Negative' in i] + \
+               [i for i in cols if ':Object' in i ] + [i for i in cols if ':Value' in i]
         return events_dict, cols
 
 

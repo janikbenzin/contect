@@ -162,6 +162,8 @@ def init_event_context(event: Event,
     if not backend:
         # For the Frontend we like to keep detailed information on context values for transparency wrt the user
         # Moreover, the Frontend allows for parallel computation of multiple detectors, which are kept separate
+        weight_sums = {AvailableSituationType.POSITIVE: sum_weights_per_type(weighted_situations, situation_param, AvailableSituationType.POSITIVE, include_sel, include_sit_sel),
+                       AvailableSituationType.NEGATIVE: sum_weights_per_type(weighted_situations, situation_param, AvailableSituationType.NEGATIVE, include_sel, include_sit_sel)}
         event.complex_context[detector] = get_weighted_sums_dict(weight_sums, weighted_sums)
         weighted_situations_wo_entity = {}
         for entity in weighted_situations:
