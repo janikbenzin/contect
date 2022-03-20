@@ -1,7 +1,9 @@
 # Contect
 
 ## Demo video
-A demo of the software can be viewed [here](https://youtu.be/VD4N8QhriLw).
+A demo of the software can be viewed here:
+
+[![Watch the video](https://img.youtube.com/vi/_P_lOeSmJW8/hqdefault.jpg)](https://www.youtube.com/watch?v=_P_lOeSmJW8)
 
 ## Overview
 
